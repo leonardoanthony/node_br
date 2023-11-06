@@ -10,6 +10,9 @@ const DEFAULT_ITEM_CADASTRAR = {
 
 describe('🧪 Suite de manipulação de Herois', () => {
 
+    before(async () => {
+        await database.cadastrar(DEFAULT_ITEM_CADASTRAR);
+    })
 
     it(`Deve pesquisar um heroi usando arquivos`, async () => {
         const expected = DEFAULT_ITEM_CADASTRAR;
@@ -18,8 +21,14 @@ describe('🧪 Suite de manipulação de Herois', () => {
         deepEqual(resultdado, expected);
     });
 
-    // it('Deve cadastrar um heroi, usando arquivos', async() => {
-    //     const expected = DEFAULT_ITEM_CADASTRAR
-    //     ok(null, expected);
-    // })
+    it('Deve cadastrar um heroi, usando arquivos', async () => {
+        const expected = {
+            id: 2,
+            nome: 'Batman',
+            poder: 'Rich'
+        }
+        const resultado = await database.cadastrar(expected);
+        const [actual] = await database.listar(expected.id);
+        deepEqual(actual, expected);
+    });
 });
