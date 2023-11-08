@@ -23,6 +23,11 @@ describe('🧪 Suite de manipulação de Herois', () => {
         await database.cadastrar(DEFAULT_ITEM_ATUALIZAR);
     });
 
+    after(async () => {
+        await database.remover(DEFAULT_ITEM_CADASTRAR.id);
+        await database.remover(DEFAULT_ITEM_ATUALIZAR.id);
+    });
+
    
 
     it(`Deve pesquisar um heroi usando arquivos`, async () => {
