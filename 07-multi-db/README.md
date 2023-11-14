@@ -33,3 +33,7 @@ docker run \
     --link mongodb:mongodb \
     -d \
     mongoclient/mongoclient
+
+docker exec -it mongodb \
+    mongo --host localhost -u admin -p senhadmin --authenticationDatabase admin \
+    --eval "db.getSiblingDB('herois').createUser({user: 'leonardoanthony', pwd:'senhasenhamsm', roles: [{role: 'readWrite', db: 'herois'}]})"
