@@ -15,6 +15,12 @@ class Postgres extends ICrud {
         return dataValues;
     }
 
+    async read(query = {}){
+        const [result] = await this._herois.findAll({where: query, raw: true});
+        delete result.id;
+        return result;
+    }
+
     async connect(){
         this._driver = new Sequelize(
             'heroes',
