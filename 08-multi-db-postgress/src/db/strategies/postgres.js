@@ -2,30 +2,20 @@ const ICrud = require("./interfaces/interfaceCrud");
 
 const Sequelize = require('sequelize');
 
-const driver = new Sequelize(
-    'heroes',
-    'leonardoanthony',
-    'senhasenhamsm',{
-        host: 'localhost',
-        dialect: 'postgres',
-        quoteIdentifiers: false,
-        operatorsAliases: false,
-    }
-)
-
 class Postgres extends ICrud {
     constructor(){
         super();
         this._driver = null;
         this._herois = null;
-        this._connect();
     }
 
-    create(item){
-        console.log("O item foi salvo em Postgres")
+    async create(item){
+        const {dataValues} = await this._herois.create(item);
+        delete dataValues.id;
+        return dataValues;
     }
 
-    _connect(){
+    async connect(){
         this._driver = new Sequelize(
             'heroes',
             'leonardoanthony',
@@ -35,11 +25,13 @@ class Postgres extends ICrud {
                 quoteIdentifiers: false,
                 operatorsAliases: false,
             }
-        )
+        );
+
+        await this.defineModel();
     }
 
     async defineModel() {
-        this._herois = driver.define('herois', {
+        this._herois = this._driver.define('herois', {
             id: {
                 type: Sequelize.INTEGER,
                 required: true,
@@ -60,7 +52,7 @@ class Postgres extends ICrud {
             timestamps: false
         });
     
-        await Herois.sync();
+        await this._herois.sync();
     }
 
     async isConected(){
