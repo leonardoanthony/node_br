@@ -29,8 +29,8 @@ class Database {
 
     async cadastrar(heroi) {
         const dados = await this.obterDadosArquivo();
-        const id = heroi.id <= 2 ? heroi.id : Date.now();
-        const heroiComId = {id,...heroi}
+        const id = !!heroi.id ? heroi.id : Date.now();
+        const heroiComId = {...heroi,id}
         const dadosFinal = [...dados, heroiComId];
         const resultado = await this.escreverArquivo(dadosFinal);
         return resultado;
@@ -55,7 +55,6 @@ class Database {
         const dados = await this.obterDadosArquivo();
         const indice = dados.findIndex(item => item.id === parseInt(id));
 
-        console.log('indice', indice);
         if(indice === -1){
             throw Error('O herói informado não existe');
         }
