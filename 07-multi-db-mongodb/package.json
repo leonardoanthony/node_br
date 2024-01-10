@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "test": "mocha src/tests/*.test.js"
+  },
+  "dependencies": {
+    "mongoose": "^8.0.4"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
+}

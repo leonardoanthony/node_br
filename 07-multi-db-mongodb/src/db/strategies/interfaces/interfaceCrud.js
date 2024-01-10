@@ -21,7 +21,15 @@ class ICrud {
         throw new NotImplementedException();
     }
     
-    isConected(){
+    isConnected(){
+        throw new NotImplementedException();
+    }
+
+    connect(){
+        throw new NotImplementedException();
+    }
+    
+    defineModel(){
         throw new NotImplementedException();
     }
 }

@@ -12,15 +12,38 @@ db.herois.insert({
     dataNascimento: '1998-01-01'
 });
 
+
+const lead = {
+  id_pendencia: "23346",
+  id_cliente: "2614577",
+  id_matricula: "2614902",
+  idCurso: "1",
+  origem: "878",
+  nome: "Marcelo",
+  email: "omarcelo2003@yahoo.com.br",
+  fone: "17991084663",
+  fone2: "",
+  quantidadeInteracoes: "1",
+  vendedor: "5252",
+};
+
 db.herois.find();
 db.herois.find().pretty();
 
-for(let i = 0; i <= 1000; i++){
-    db.herois.insert({
-        nome: `Clone-${i}`,
-        poder: 'Velocidade',
-        dataNascimento: `${1998+i}-01-01`
-    });
+for(let i = 0; i < 79; i++){
+    db.leads.insert({
+        id_pendencia: "23346",
+        id_cliente: "2614577",
+        id_matricula: "2614902",
+        idCurso: "1",
+        origem: "878",
+        nome: "Marcelo",
+        email: "omarcelo2003@yahoo.com.br",
+        fone: "17991084663",
+        fone2: "",
+        quantidadeInteracoes: "1",
+        vendedor: "5252",
+      });
 }
 
 db.herois.count();
