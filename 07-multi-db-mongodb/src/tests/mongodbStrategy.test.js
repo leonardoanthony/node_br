@@ -27,4 +27,11 @@ describe('🧪 MongoDB Strategy', function() {
         const {nome, poder} = await context.create(MOCK_HEROI_CADASTRAR);
         assert.deepEqual({nome, poder}, MOCK_HEROI_CADASTRAR);
     });
+
+    it('Listar', async () => {
+        const [{nome, poder}] = await context.read({nome: MOCK_HEROI_CADASTRAR.nome});
+        const result = {nome, poder};
+
+        assert.deepEqual(result, MOCK_HEROI_CADASTRAR);
+    })
 });
