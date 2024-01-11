@@ -25,6 +25,7 @@ class MongoDB extends ICrud {
         this._connection = Mongoose.connection;
 
         this._connection.once('open', () => true);
+        this.defineModel();
     }
 
     async isConnected(){
@@ -58,13 +59,12 @@ class MongoDB extends ICrud {
         this._herois = Mongoose.model('herois', heroiSchema);
     }
  
-    async create(item){
-        const resultCadastrar = await model.create(item);
-        console.log('resultCadastrar', resultCadastrar);
+    create(item){
+        return this._herois.create(item);
     }
 
     async read(query){
-        const resultListar = await model.find(query)
+        const resultListar = await this._herois.find(query)
         console.log('resultListar', resultListar);
     }
 }
